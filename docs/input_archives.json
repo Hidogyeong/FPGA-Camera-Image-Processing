@@ -1,0 +1,37 @@
+[
+  {
+    "archive": "DE_final_project.zip",
+    "bytes": 570624,
+    "sha256": "1618edfce59af3250b8d43df8685e348c9646bbaa05bedbd934aca76b3aafa3a"
+  },
+  {
+    "archive": "DE_c.zip",
+    "bytes": 112454227,
+    "sha256": "ac938b31ee1d4905285ccd0f4f7f50fe48a1041612134a9eb782de49e386831f"
+  },
+  {
+    "archive": "DE_Matlab.zip",
+    "bytes": 48923539,
+    "sha256": "7ec83a04af394c7aa9a05f4f6aee1920ef64ae60e93d3b8f5b36158131b88e8b"
+  },
+  {
+    "archive": "Camera_LCD_ctrl.zip",
+    "bytes": 182342,
+    "sha256": "79bfc796d8993ff2ecb6b1c5a9c4128f93a15327550061c2b06a10f2059f6b76"
+  },
+  {
+    "archive": "RGB_YCbCr_total.zip",
+    "bytes": 766894,
+    "sha256": "35f8e3961701a5d38795805f447111207543a893ffdc57295b1c7c0ea8400441"
+  },
+  {
+    "archive": "Packing_Unpacking_total.zip",
+    "bytes": 633943,
+    "sha256": "2f058ddae45efc4d986d39c3e7909e46cab657032b2c9a3f0d0085f44261608c"
+  },
+  {
+    "archive": "BMP2COE converter.zip",
+    "bytes": 36365124,
+    "sha256": "37d387be322d63f18662566b8e8f66cfeb981b36f34b2081d1e3ab2ddf9a6bad"
+  }
+]
