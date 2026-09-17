@@ -6,10 +6,16 @@ The author describes C and MATLAB as **pre-RTL validation prototypes** used befo
 
 1. Explore the image-processing algorithm in C and MATLAB.
 2. Check coefficient quantization and intermediate arithmetic for an RTL implementation.
-3. Develop Verilog submodules and stimulus testbenches.
-4. Integrate camera capture, frame buffering, processing, and LCD output.
+3. Develop Verilog submodules, stimulus testbenches, and custom behavioral RAM models for ModelSim simulation.
+4. Use Vivado RAM IP blocks for the FPGA implementation and integrate camera capture, frame buffering, processing, and LCD output.
 
 The archive records this sequence; it does not establish automated equivalence between every prototype and the final design.
+
+## RAM in simulation and on the FPGA
+
+This was an individual project undertaken during the author's fourth undergraduate year. The author wrote behavioral RAM models for ModelSim and used Vivado-provided RAM blocks when implementing the design on the FPGA.
+
+The simulation RAM sources and the Vivado RAM IP belong to different implementation stages. The archived behavioral models have version-specific interfaces and dimensions; the original Vivado IP configuration is not included in the supplied archives. Reproduction should restore the appropriate RAM for the selected simulation or FPGA source set.
 
 ## Hardware data path
 
@@ -18,7 +24,7 @@ The archive records this sequence; it does not establish automated equivalence b
 | Camera capture | `rtl/CIS_IF.v` / `CIS_IF` | Camera `CY[7:0]` is assembled into RGB565; a 17-bit pixel address accompanies it |
 | Packing | `rtl/packing.v` / `packing` | Two 16-bit pixels form a 32-bit memory word |
 | Shared memory access | `rtl/packing_unpakcing.v` / `packing_unpacking` | Selects packing or unpacking word addresses according to `UP_CLK` |
-| Frame storage | `bufferram` instance in `rtl/top.v` | Expected 32-bit memory interface with 16-bit addresses; implementation absent |
+| Frame storage | `bufferram` instance in `rtl/top.v` | 32-bit memory interface with 16-bit addresses; Vivado RAM IP was used for FPGA implementation, but its original configuration is not archived |
 | Unpacking | `rtl/Unpacking.v` / `Unpacking` | Returns 16-bit pixels from 32-bit words |
 | Color conversion | `rtl/R_2_Y.v` / `RGB_to_YCbCr` | RGB565 expands by zero-filling to 8-bit channels; output is `{Y, Cb, Cr}` |
 | Line storage | `rtl/filtering.v` / `process` | Uses 48-bit line pairs plus the current pixel to form a 72-bit vertical stack |
@@ -34,7 +40,7 @@ The archive records this sequence; it does not establish automated equivalence b
 - RGB565 frame payload: 261,120 bytes.
 - Packed frame payload: 65,280 words of 32 bits.
 - The original diagram's intended frame buffer is 65,536 × 32 bits, consistent with a 16-bit word address. This describes the intended capacity; no RAM IP configuration was supplied.
-- Two full lines of 24-bit YCbCr require 480 × 48 = 23,040 bits of payload storage. The historical `line_ram.v` model does not implement that capacity correctly.
+- Two full lines of 24-bit YCbCr require 480 × 48 = 23,040 bits of payload storage. The archived `line_ram.v` simulation snapshot has a different capacity; the hardware design used Vivado RAM IP.
 
 ## Arithmetic
 

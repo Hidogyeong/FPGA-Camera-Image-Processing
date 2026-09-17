@@ -2,6 +2,8 @@
 
 A Verilog project for a **480 × 272 camera-to-LCD image-processing pipeline**, with RGB565 frame buffering, fixed-point RGB–YCbCr conversion, and luminance enhancement.
 
+**Project context:** developed individually during my fourth year of undergraduate study.
+
 **Development workflow:** C and MATLAB were used first to check the algorithms and fixed-point arithmetic before implementing the design in Verilog. They are pre-RTL validation prototypes, rather than software stages executed in the FPGA data path.
 
 **Reused component:** camera configuration reuses an existing I²C controller. See [source notes](docs/SOURCE_NOTES.md) for attribution and dependency details.
@@ -36,9 +38,18 @@ A Verilog project for a **480 × 272 camera-to-LCD image-processing pipeline**, 
 
 Begin with [`rtl/top.v`](rtl/top.v), then [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the module map. The final RTL is separated from historical alternatives because many versions define modules with the same names.
 
-## Current build status
+## RAM workflow
 
-This repository preserves the supplied implementation and its development history. It is **not yet a complete, independently verified FPGA build**: the supplied final source set needs the `bufferram` implementation, a compatible `line_ram`, and the implementation behind the `I2C` interface. Some historical testbenches also have interface mismatches. See the concrete findings and restoration steps in [`docs/BUILD_STATUS.md`](docs/BUILD_STATUS.md).
+| Environment | RAM implementation |
+|---|---|
+| ModelSim simulation | Behavioral RAM models written by the project author for simulation |
+| FPGA implementation | Vivado-provided RAM IP blocks connected to the image-processing RTL |
+
+The project used custom simulation models and Vivado RAM blocks at different stages of development. Historical RAM model sources are preserved in [`archive/memory_models/`](archive/memory_models).
+
+## Reproducing the archived project
+
+The supplied archives do not include the original Vivado RAM IP configuration. Rebuilding the board design therefore requires restoring or recreating the RAM IP used by `bufferram` and `line_ram`, with matching ports, dimensions, latency, and write mode. The reused I²C dependency and some historical testbench interfaces also need attention. These are reproduction requirements for the current source archive. See [`docs/BUILD_STATUS.md`](docs/BUILD_STATUS.md) for details.
 
 No HDL simulation, FPGA synthesis, board test, or C/MATLAB numerical equivalence run was performed during this packaging work. No FPS, timing closure, resource utilization, or image-quality result is claimed.
 

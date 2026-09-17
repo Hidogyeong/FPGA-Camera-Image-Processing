@@ -8,7 +8,9 @@ Earlier versions are preserved as separate snapshots. They are not additional fi
 | `color/RGB_YCbCr_converter_v1/` | Standalone color converters and their testbenches |
 | `color/RGB_YCbCr_v1/` | Integrated color conversion before filtering was added |
 | `packing/` | Packing/unpacking iterations, including v2–v9 and the YCbCr-integrated variant |
-| `memory_models/` | Original behavioral memory sketches, with known interface/capacity issues |
+| `memory_models/` | Snapshots of author-written simulation RAM models; review version-specific interfaces and dimensions |
+
+The author wrote RAM models for ModelSim simulation and used Vivado RAM IP blocks for the FPGA implementation. The RAM files here preserve simulation-stage snapshots. See the [RAM workflow and reproduction notes](../docs/BUILD_STATUS.md) for details.
 
 Version names follow the supplied directories and do not imply that the highest-numbered folder is the final design. The integrated source set is selected from the explicitly supplied `DE_final_project.zip`.
 

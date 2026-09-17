@@ -6,6 +6,15 @@ Seven original ZIP archives were inspected. Their filenames, sizes, and SHA-256 
 
 The author also supplied a block-diagram image and clarified that the C and MATLAB code preceded the Verilog implementation as pre-RTL validation. The architecture documentation and redrawn diagram are based on the supplied RTL, that image, and this development context.
 
+## Project context and RAM implementation
+
+The author describes this as an individual project completed during the fourth year of undergraduate study. The RAM workflow was explicitly clarified by the author:
+
+- **ModelSim:** the author wrote behavioral RAM models for simulation.
+- **FPGA:** Vivado-provided RAM IP blocks were connected to the design.
+
+The preserved RAM model snapshots document the simulation work. The original Vivado RAM IP configuration was not included in the supplied ZIPs, so a new board build requires recovering or regenerating that configuration. This is a limitation of the available archive.
+
 ## Reused I²C component
 
 The author explicitly confirms that the I²C controller was an existing implementation reused for camera configuration. It is credited here as a reused dependency. Its original provider, version, and redistribution terms are not identified in the supplied material. The integration files and interface are preserved with their existing notices.
